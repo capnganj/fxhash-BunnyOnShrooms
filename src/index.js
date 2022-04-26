@@ -68,11 +68,21 @@ controls.minDistance = 2;
 
 
 //bunny model load
+let uniforms= {
+  time: { value: 1.0 }
+};
 const objLoader = new OBJLoader();
 objLoader.load(Bunny, (bunny) => {
 
   //placeholder material for testing
-  const material = new THREE.MeshNormalMaterial({side: THREE.DoubleSide});
+  const material2 = new THREE.MeshNormalMaterial({side: THREE.DoubleSide});
+
+  //first shot at a shader material
+  const material = new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    vertexShader: document.getElementById( 'vertexShader' ).textContent,
+		fragmentShader: document.getElementById( 'fragmentShader' ).textContent 
+  });
   
   //add mesh to scene <3
   const mesh = new THREE.Mesh(bunny.children[0].geometry, material);
@@ -109,6 +119,8 @@ function onWindowResize() {
 function animate() {
 
   requestAnimationFrame( animate );
+
+  uniforms[ 'time' ].value = performance.now() / 1000;
 
   controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
 
