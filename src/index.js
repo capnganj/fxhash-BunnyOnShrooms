@@ -67,13 +67,28 @@ controls.maxDistance = 10;
 controls.minDistance = 2;
 
 
-//bunny model load
+//shader uniforms!
 let uniforms= {
+  //used by both vertex and fragment
   time: { value: 1.0 },
+
+  //vertex only
   scale: { value: 1.0 },
   displacement: { value: 0.01 },
-  speed: { value: 0.5 }
+  speed: { value: 0.5 },
+
+  //fragment only
+  fragSpeed: { value: 1.0 },
+  uvScale: { value: [2.0, 2.0]},
+  brightness: { value: 1.0 },
+  permutations: { value: 1.0 },
+  iterations: { value: 1.0 },
+  color1: { value: [0,0,0]},
+  color2: { value: [1,1,1]},
+  color3: { value: [0.5,0.5,0.5]},
 };
+
+//bunny model load
 const objLoader = new OBJLoader();
 objLoader.load(Bunny, (bunny) => {
 
