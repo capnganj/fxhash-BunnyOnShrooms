@@ -8,7 +8,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { ConvexGeometry } from 'three/examples/jsm/geometries/ConvexGeometry';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-import Bunny from './bunny.obj';
+import Bunny from './bunnyUV.obj';
 
 
 //1) - generate fxhash features - global driving parameters

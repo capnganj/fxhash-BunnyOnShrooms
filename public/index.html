@@ -38,42 +38,31 @@
 
   <script id="vertexShader" type="x-shader/x-vertex">
 
-      precision mediump float;
-			precision mediump int;
+    varying vec2 vUv;
 
-
-			attribute vec4 color;
-
-			varying vec3 vPosition;
-			varying vec4 vColor;
-
-			void main()	{
-
-				vPosition = position;
-				vColor = color;
-
-				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-
+			void main()
+			{
+				vUv = uv;
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+				gl_Position = projectionMatrix * mvPosition;
 			}
 
 </script>
 
   <script id="fragmentShader" type="x-shader/x-fragment">
 
-      precision mediump float;
-			precision mediump int;
+    uniform float time;
 
-			uniform float time;
+			varying vec2 vUv;
 
-			varying vec3 vPosition;
-			varying vec4 vColor;
+			void main( void ) {
 
-			void main()	{
+				vec2 position = - 1.0 + 2.0 * vUv;
 
-				vec4 color = vec4( vColor );
-				color.g += sin( vPosition.x * 10.0 + time ) * 0.5;
-
-				gl_FragColor = color;
+				float red = abs( sin( position.x * position.y + time / 5.0 ) );
+				float green = abs( sin( position.x * position.y + time / 4.0 ) );
+				float blue = abs( sin( position.x * position.y + time / 3.0 ) );
+				gl_FragColor = vec4( red, green, blue, 1.0 );
 
 			}
 
