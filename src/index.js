@@ -69,7 +69,10 @@ controls.minDistance = 2;
 
 //bunny model load
 let uniforms= {
-  time: { value: 1.0 }
+  time: { value: 1.0 },
+  scale: { value: 1.0 },
+  displacement: { value: 0.01 },
+  speed: { value: 0.5 }
 };
 const objLoader = new OBJLoader();
 objLoader.load(Bunny, (bunny) => {
