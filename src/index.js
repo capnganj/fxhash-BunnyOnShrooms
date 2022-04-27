@@ -18,11 +18,14 @@ window.$fxhashData = feet;
 
 // FX Features
 window.$fxhashFeatures = {
-  "Temperature" : feet.color.tag,
-  "Zone" : feet.env.tag,
-  "Density": feet.density.tag
+  "Palette" : feet.color.name,
+  "Scale" : feet.scale.tag,
+  "Speed": feet.speed.tag,
+  "Brightness": feet.brightness.tag,
+  "Depth": feet.permutations.tag
 };
 console.log(window.$fxhashFeatures);
+console.log(feet);
 
 //vars related to fxhash preview call
 //loaded tracks whether texture has loaded;
@@ -68,24 +71,24 @@ controls.minDistance = 2;
 
 
 //shader uniforms!
-let uniforms= {
+let uniforms = {
   //used by both vertex and fragment
   time: { value: 1.0 },
 
   //vertex only
   scale: { value: 1.0 },
-  displacement: { value: 0.01 },
-  speed: { value: 0.5 },
+  displacement: { value: feet.scale.dispValue },
+  speed: { value: feet.speed.vertexValue },
 
   //fragment only
-  fragSpeed: { value: 1.0 },
-  uvScale: { value: [2.0, 2.0]},
-  brightness: { value: 1.0 },
-  permutations: { value: 1.0 },
+  fragSpeed: { value: feet.speed.fragmentValue },
+  uvScale: { value: [feet.scale.value, feet.scale.value]},
+  brightness: { value: feet.brightness.value },
+  permutations: { value: feet.permutations.value },
   iterations: { value: 1.0 },
-  color1: { value: [0,0,0]},
-  color2: { value: [1,1,1]},
-  color3: { value: [0.5,0.5,0.5]},
+  color1: { value: [feet.color.uno.r/255,feet.color.uno.g/255,feet.color.uno.b/255]},
+  color2: { value: [feet.color.dos.r/255,feet.color.dos.g/255,feet.color.dos.b/255]},
+  color3: { value: [feet.color.tres.r/255,feet.color.tres.g/255,feet.color.tres.b/255]},
 };
 
 //bunny model load
@@ -115,7 +118,7 @@ objLoader.load(Bunny, (bunny) => {
 
 //set the background color 
 let bod = document.body;
-bod.style.backgroundColor = feet.color.value;
+bod.style.backgroundColor = feet.color.background;
 
 
 //set up resize listener and let it rip!
