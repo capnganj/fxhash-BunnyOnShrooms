@@ -55,7 +55,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 let camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
-camera.position.set( 5, 5, 5 );
+camera.position.set( 0, 3, 4 );
 
 //lights
 const amb = new THREE.AmbientLight(0xffffff);

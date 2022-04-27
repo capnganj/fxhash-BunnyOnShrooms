@@ -205,7 +205,7 @@ class Features {
         else {
             this.permutations.tag = "Abyssal";
         }
-        this.permutations.value = this.map(p, 0, 1, 2, 4);
+        this.permutations.value = this.map(p, 0, 1, 3, 5);
     }
 }
 
