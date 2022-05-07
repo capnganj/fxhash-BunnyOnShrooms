@@ -6,7 +6,6 @@ import { Features } from './Features';
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { ConvexGeometry } from 'three/examples/jsm/geometries/ConvexGeometry';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import Bunny from './bunnyUV.obj';
 
@@ -58,8 +57,8 @@ let camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHe
 camera.position.set( 0, 3, 4 );
 
 //lights
-const amb = new THREE.AmbientLight(0xffffff);
-scene.add(amb);
+//const amb = new THREE.AmbientLight(0xffffff);
+//scene.add(amb);
 
 // controls
 let controls = new OrbitControls( camera, renderer.domElement );
@@ -96,7 +95,7 @@ const objLoader = new OBJLoader();
 objLoader.load(Bunny, (bunny) => {
 
   //placeholder material for testing
-  const material2 = new THREE.MeshNormalMaterial({side: THREE.DoubleSide});
+  //const material2 = new THREE.MeshNormalMaterial({side: THREE.DoubleSide});
 
   //first shot at a shader material
   const material = new THREE.ShaderMaterial({
@@ -109,6 +108,8 @@ objLoader.load(Bunny, (bunny) => {
   const mesh = new THREE.Mesh(bunny.children[0].geometry, material);
   mesh.scale.set(20,20,20);
   mesh.position.y -= 2;
+  mesh.position.x += 0.5;
+  mesh.position.z -= 0.25;
   scene.add(mesh);
 
   //loaded flag for fxhash capture
