@@ -23,8 +23,8 @@ window.$fxhashFeatures = {
   "Brightness": feet.brightness.tag,
   "Depth": feet.permutations.tag
 };
-console.log(window.$fxhashFeatures);
-console.log(feet);
+//console.log(window.$fxhashFeatures);
+//console.log(feet);
 
 //vars related to fxhash preview call
 //loaded tracks whether texture has loaded;
@@ -51,6 +51,7 @@ let renderer = new THREE.WebGLRenderer( {
 } );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.domElement.id = "hashish"
 document.body.appendChild( renderer.domElement );
 
 let camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
